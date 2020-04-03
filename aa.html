@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+  <title>aa.html</title>
+  <style>
+    /* .three {
+      width: auto;
+      height: auto;
+    }
+
+    .three a {
+      width: auto;
+      height: 25px;
+      font-size: 20px;
+    }
+
+    #big_img {
+      width: 600px;
+      height: auto;
+    } */
+    .ani {
+      width: 100%;
+      height: 900px;
+      margin: 50px auto;
+      overflow: hidden;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+      background-size:100% 100%;
+      background-position: center;
+      -webkit-animation-name: "loop";
+      -webkit-animation-duration: 10s;
+      -webkit-animation-iteration-count: infinite;
+    }
+
+   @-webkit-keyframes loop {
+      0% {
+        background: url(./img/1.jpg) no-repeat;
+      }
+      25% {
+        background: url(./img/2.jpg) no-repeat;
+      }
+      50% {
+        background: url(./img/3.jpg) no-repeat;
+      }
+      75% {
+        background: url(./img/4.jpg) no-repeat;
+      }
+      100% {
+        background: url(./img/5.jpg ) no-repeat;
+      }
+
+   }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="ani"></div> -->
+
+  <!-- <div>
+    <ul id="a1">
+      <li class="three"><a href="./img/1.jpg" onclick=" return show_img(this)">111</a></li>
+      <li class="three"><a href="./img/2.jpg" onclick=" return show_img(this)">222</a></li>
+      <li class="three"><a href="./img/3.jpg" onclick=" return show_img(this)">333</a></li>
+      <li class="three"><a href="./img/4.jpg" onclick=" return show_img(this)">444</a></li>
+      <li class="three"><a href="./img/5.jpg" onclick=" return show_img(this)">555</a></li>
+      <li class="three"><a href="./img/6.jpg" onclick=" return show_img(this)">666</a></li>
+    </ul>
+    <img id="big_img" src="./img/1.jpg" alt="">
+  </div> -->
+</body>
+<script>
+
+  // function show_img(src_href) {
+  //   var src_href = src_href.getAttribute("href");
+  //   var img = document.getElementById("big_img");
+  //   img.setAttribute("src", src_href);
+  //   return false;
+  // }
+
+  //数组去重
+  // 第一种方法
+  var arr = new Array;
+  var flag = 1; //判断是否元素是否重复
+  var arrs = [];
+  arr = [1,1,3,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+  // //匿名函数，最后加()是为了执行这个匿名函数
+  //   (function() {
+  //     for(var i = 0; i < arr.length; i++, flag = 1) {
+  //       for (var j = 0; j < i; j ++) {
+  //         if (arr[i] == arr[j]) {
+  //           flag = 0;
+  //         }
+  //       }
+  //       flag?arrs.push(arr[i]):'';
+  //     }
+  //     console.log(arrs);
+  //   })();
+
+  //第二种es6去重, ps:这种方法还无法去掉“{}”空对象
+  // console.log(Array.from(new Set(arr)));
+  //或者 
+  // console.log([...new Set(arr)] );
+
+  //第三种es5去重, ps:NaN和{}没有去重，两个null直接消失了
+  // (function() {
+  //   for (var i = 0; i < arr.length; i++) {
+  //     for(var j = i+1; j < arr.length; j++) {
+  //       if (arr[i] == arr[j]) {
+  //         arr.splice(j,1);
+  //         j--;
+  //       }
+  //     }
+  //   }
+  //   console.log(arr);
+  // })()
+  
+  //第四种利用indexOf去重,ps:NaN、{}没有去重
+    // (function() {
+    //   for (var i = 0; i < arr.length; i++) {
+    //     if (arrs.indexOf(arr[i]) == -1) {
+    //       arrs.push(arr[i]);
+    //     }
+    //   }
+    //   console.log(arrs);
+    // })();
+
+  //第五种利用sort(), ps:NaN、{}没有去重
+    // (function() {
+    //   arr = arr.sort();
+    //   // arrs = [arr[0]];
+    //   for (var i = 0; i < arr.length; i++) {
+    //     if (arr[i] !== arr[i+1]) {
+    //       arrs.push(arr[i]);
+    //     }
+    //   }
+    //   console.log(arrs);
+    // })();
+
+  //第六种利用includes(),
+  // (function () {
+  //   for (var i = 0; i < arr.length; i++) {
+  //     if (!arrs.includes(arr[i])) {  //includes 检测数组是否有某个值,有返回true, 没有返回false
+  //       arrs.push(arr[i]);
+  //     }
+  //   }
+  //   console.log(arrs);
+  // })()
+
+  //第七种利用hasOwnProperty，ps完全去重
+//   function unique(arr) {
+//     var obj = {};
+//     return arr.filter(function(item, index, arr){  //filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+//       console.log(typeof item + item);
+//         return obj.hasOwnProperty(typeof item + item)? false : (obj[typeof item + item] = true);   //利用hasOwnProperty 判断是否存在对象属性
+//     })
+// }
+// console.log(unique(arr))
+
+    //第八种利用filter
+    // function unique(arr) {
+    // return arr.filter(function(item, index, arr) {    //filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+    //   //当前元素，在原始数组中的第一个索引==当前索引值，否则返回当前元素
+    //   console.log(arr.indexOf(item, 0), index);
+    //   return arr.indexOf(item, 0) === index;
+    //   });
+    // } 
+    // console.log(unique(arr))
+</script>
+
+</html>
